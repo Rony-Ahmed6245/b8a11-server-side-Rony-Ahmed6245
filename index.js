@@ -40,7 +40,7 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // crud operations starting==>
-    // database and collection name 
+    // database and collection name==> 
     const jobCollection = client.db("jobsDB").collection("jobs");
 
     // create data ==>
