@@ -39,7 +39,7 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
-    // crud operations start==>
+    // crud operations starting==>
     // database and collection name 
     const jobCollection = client.db("jobsDB").collection("jobs");
 
