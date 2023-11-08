@@ -15,17 +15,11 @@ app.use(express.json());
 
 
 // user name and pass  uri 
-// jobProtal
-// 0aDbL3woCP0BdSz2
-const username = process.env.MONGODB_USERNAME;
-console.log(username);
-const password = process.env.MONGODB_PASSWORD;
-console.log(password);
-// there is problem uri is not working be tri in this uri
+console.log(process.env.DB_USER);
+console.log(process.env.DB_PASS);
 // const uri = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@cluster0.eehyjj4.mongodb.net/<database-name>?retryWrites=true&w=majority`;
-// const uri = `mongodb+srv://${username}:${password}@cluster0.eehyjj4.mongodb.net/?retryWrites=true&w=majority`;
-const uri = "mongodb+srv://jobProtal:0aDbL3woCP0BdSz2@cluster0.eehyjj4.mongodb.net/?retryWrites=true&w=majority";
-
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.eehyjj4.mongodb.net/?retryWrites=true&w=majority`;
+console.log(uri);
 
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
