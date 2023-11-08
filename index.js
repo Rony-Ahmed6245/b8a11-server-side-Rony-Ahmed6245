@@ -1,19 +1,21 @@
+
+// <==main express servre code strating point ==>
 const express = require("express");
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const cors = require("cors");
 const app = express();
 require('dotenv').config();
-
+// server local dynamic port 
 const port = process.env.PORT || 5001;
 
 
 
-// middleware==>
+//<==some middleware==>
 app.use(cors());
 app.use(express.json());
 
 
-
+// <==database uri ==>
 // user name and pass  uri 
 // console.log(process.env.DB_USER);
 // console.log(process.env.DB_PASS);
@@ -31,13 +33,14 @@ const client = new MongoClient(uri, {
   }
 });
 
+
 async function run() {
   try {
-    // crud operations starting==>
+    // <===========crud operations starting ==========>
     // database and collection name==> 
     const jobCollection = client.db("jobsDB").collection("jobs");
 
-    // create data ==>
+    // <====create data  ande inserted data====>
     app.post("/v1/job", async (req, res) => {
         const job = req.body;
           console.log(job);
@@ -47,12 +50,11 @@ async function run() {
       });
 
 
-    //   read data ==>
+    //  <====== read data and display ready data api ====>
     app.get("/v1/jobs", async (req, res) => {
         const result = await jobCollection.find().toArray();
         res.send(result);
       });
-
 
     // Connect the client to the server	(optional starting in v4.7)
     // await client.connect();
@@ -67,11 +69,9 @@ async function run() {
 
 run().catch(console.dir);
 
-
 app.get("/", (req, res) => {
   res.send("Crud is running...");
 });
-
 app.listen(port, () => {
   console.log(`Job server Running on port ${port}`);
 });
