@@ -50,13 +50,11 @@ async function run() {
       });
 
 
-    //  <====== read data and display ready data api ====>
+    //  <====== read data and display ready data api====>
     app.get("/v1/jobs", async (req, res) => {
         const result = await jobCollection.find().toArray();
         res.send(result);
       });
-
-    // Connect the client to the server	(optional starting in v4.7)
     // await client.connect();
     // Send a ping to confirm a successful connection
     // await client.db("admin").command({ ping: 1 });
@@ -67,11 +65,14 @@ async function run() {
   }
 }
 
+
+
 run().catch(console.dir);
 
 app.get("/", (req, res) => {
   res.send("Crud is running...");
 });
+
 app.listen(port, () => {
   console.log(`Job server Running on port ${port}`);
 });
