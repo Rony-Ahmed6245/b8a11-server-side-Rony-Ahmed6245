@@ -39,12 +39,22 @@ async function run() {
     // <===========crud operations starting ==========>
     // database and collection name==> 
     const jobCollection = client.db("jobsDB").collection("jobs");
+    const applyJobCollection = client.db("jobsDB").collection("applyJob");
 
-    // <====create data  ande inserted data====>
+    // <====Add a job inserted====>
     app.post("/v1/job", async (req, res) => {
         const job = req.body;
           console.log(job);
         const result = await jobCollection.insertOne(job);
+        console.log(result);
+        res.send(result);
+      });
+    
+    // applied job inserted
+    app.post("/v1/appliedJobs", async (req, res) => {
+        const applyJob = req.body;
+          console.log(applyJob);
+        const result = await applyJobCollection.insertOne(applyJob );
         console.log(result);
         res.send(result);
       });
@@ -53,6 +63,12 @@ async function run() {
     //  <====== read data and display ready data api====>
     app.get("/v1/jobs", async (req, res) => {
         const result = await jobCollection.find().toArray();
+        res.send(result);
+      });
+
+      // applied job get 
+    app.get("/v1/applyJob", async (req, res) => {
+        const result = await applyJobCollection.find().toArray();
         res.send(result);
       });
     // await client.connect();
